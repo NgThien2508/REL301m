@@ -1,3 +1,7 @@
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
 # Thảo luận về vấn đề của K-Armed bandit
 ## Giới thiệu
 K-Armed problem là bài toán kinh điển trong học tăng cường. Nó giả định ra các tình huống mà bạn phải lựa chọn giữa k hành động(k=n) khác nhau, mỗi hành động mang lại kết quả, giá trị ngẫu nhiên với mục đích là tối ưu hóa giá trị nhận được qua một loạt các lần thử cho từng trường hợp.
@@ -15,7 +19,7 @@ Giả định rằng bác sĩ (agent) chữa bệnh cho bệnh nhân với 3 ph�
 - Values là giá trị phần thưởng dự kiến của mỗi hành động trong một tình huống
     * Với công thức: 
 $$
-q_*(a) \overset{\text{def}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
+q_*(a) \overset{\text{.}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
 $$
 
      

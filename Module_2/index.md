@@ -16,5 +16,5 @@ Values là giá trị phần thưởng dự kiến của mỗi hành động tro
 Với công thức:
 
 $$
-q_*(a) \overset{\text{def}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
+q_*(a) \overset{\text{.}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
 $$
