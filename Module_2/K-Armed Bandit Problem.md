@@ -11,5 +11,11 @@ Giả định rằng bác sĩ (agent) chữa bệnh cho bệnh nhân với 3 ph�
     + Nhưng nếu nó thật sự không tốt thì sẽ ảnh hưởng đến tình trnagj sức khỏe của bệnh nhân.
     > Minh chứng cho mỗi hành động cho ra kết quả ngẫu nhiên trong điều kiện không chắc chắn. 
 - Mục đích là tối ưu hóa phương pháp chữa bệnh tốt nhất cho bệnh nhân
+## Action values
+- Values là giá trị phần thưởng dự kiến của mỗi hành động trong một tình huống
+    * Với công thức: 
+$$
+q_*(a) \overset{\text{def}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
+$$
 
      
