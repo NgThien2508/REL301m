@@ -23,6 +23,7 @@ Giả định rằng bác sĩ (agent) chữa bệnh cho bệnh nhân với 3 ph�
 ## Action values
 - Values là giá trị phần thưởng dự kiến của mỗi hành động trong một tình huống
     * Với công thức: 
+    
 $$
 q_*(a) \overset{\text{.}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
 $$
