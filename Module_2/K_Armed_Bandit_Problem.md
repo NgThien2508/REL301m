@@ -9,7 +9,7 @@ title: K-Armed Bandit
 
 <style>
 mjx-container {
-  font-size: 130% !important;
+  font-size: 180% !important;
 }
 </style>
 
