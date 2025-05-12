@@ -1,4 +1,4 @@
----
+<!--
 layout: default
 title: K-Armed Bandit
 ---
@@ -12,7 +12,7 @@ mjx-container {
   font-size: 180% !important;
 }
 </style>
-
+-->
 
 # Thảo luận về vấn đề của K-Armed bandit
 ## Giới thiệu
