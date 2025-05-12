@@ -46,5 +46,9 @@ $$
 ## Vì sao phải xem xét vấn đề K-Armed bandit trước khi tới reinforcement learning?
 - Bởi vì tốt nhất là xem xét các vấn đề và lựa chọn thiết kế thuật toán cài đặt đơn giản nhất khi chúng phát sinh.
     + Ví dụ, tối đa hóa phần thưởng và ước tính giá trị là những vấn đề phụ quan trọng ở cả Bandit và reinforce learning.
-
+----------------------------------------------------------------------------------------------------------------------------                                                                                                                                    
+  ##### 5-12-2025 at 10PM
+  ##### Course: Fundamentals of Reinforcement Learning/ Module 2
+  ##### Đọc tài liệu tại: K-Armed Bandit problem
+  ##### Học nội dung từ clip: Sequential Decision Making with Evaluative Feedback
      
