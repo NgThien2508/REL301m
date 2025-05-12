@@ -9,7 +9,7 @@ Giả định rằng bác sĩ (agent) chữa bệnh cho bệnh nhân với 3 ph�
     + Một phương pháp điều trị dường như hoạt động tốt hơn các phương pháp khác ví dụ như thuốc C.
     + Có thể một trong các phương pháp điều trị khác như thuốc A hoặc B thực sự tốt hơn nhưng hiệu quả của nó không được biết đến ngay lập tức.
     + Nhưng nếu nó thật sự không tốt thì sẽ ảnh hưởng đến tình trnagj sức khỏe của bệnh nhân.
-    => Minh chứng cho mỗi hành động cho ra kết quả ngẫu nhiên trong điều kiện không chắc chắn
+    > Minh chứng cho mỗi hành động cho ra kết quả ngẫu nhiên trong điều kiện không chắc chắn. 
 - Mục đích là tối ưu hóa phương pháp chữa bệnh tốt nhất cho bệnh nhân
 
-    
+     
