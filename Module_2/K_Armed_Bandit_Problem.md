@@ -34,5 +34,10 @@ Giả định rằng bác sĩ (agent) chữa bệnh cho bệnh nhân với 3 ph�
 $$
 q_*(a) \overset{\text{.}}{=} \mathbb{E}[R_t \mid A_t = a], \quad \forall a \in \{1, \ldots, k\}
 $$
+- Trong đó:
+    + $q_{*}(a)$: giá trị thực của hành động a
+    + $R_t$: phần thưởng tại thời điểm t
+    + $A_t$: hành động được chọn tại thời điểm t
+    + $a$: hành động bất kỳ trong tập k hành động
 
      
