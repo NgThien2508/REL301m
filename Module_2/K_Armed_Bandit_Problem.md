@@ -39,7 +39,12 @@ $$
     + $R_t$: phần thưởng tại thời điểm t
     + $A_t$: hành động được chọn tại thời điểm t
     + $a$: hành động bất kỳ trong tập k hành động
-- Công thức này cho biết giá trị kỳ vọng của phần thưởng khi chọn hành động a 
-
+- Công thức này cho biết giá trị kỳ vọng của phần thưởng khi chọn hành động a
+## Ứng dụng thực tế
+- Y tế
+- Hệ thống gợi ý ( Recomendation system)
+## Vì sao phải xem xét vấn đề K-Armed bandit trước khi tới reinforcement learning?
+- Bởi vì tốt nhất là xem xét các vấn đề và lựa chọn thiết kế thuật toán cài đặt đơn giản nhất khi chúng phát sinh.
+    + Ví dụ, tối đa hóa phần thưởng và ước tính giá trị là những vấn đề phụ quan trọng ở cả Bandit và reinforce learning.
 
      
