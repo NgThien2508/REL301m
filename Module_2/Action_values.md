@@ -113,7 +113,15 @@ Trong quá trình học tăng cường, tác tử (agent) phải cân bằng gi�
 ### Hành động Tham lam (Greedy Action)
 - Là hành động có giá trị ước tính cao nhất tại thời điểm hiện tại
 - Được tính bằng cách lấy argmax của các giá trị ước tính
-- Công thức: $$A_t = \underset{a}{\operatorname{argmax}} Q_t(a)$$
+- Công thức: $$A_t = \arg\max_{a} Q_t(a)$$
+
+### Ví dụ minh họa:
+Với dữ liệu từ 3 nhà hàng:
+- Q(A) = 8.0
+- Q(B) = 7.0
+- Q(C) = 6.67
+
+Khi đó: $$A_t = \arg\max_{a} Q_t(a) = A$$ (vì Q(A) có giá trị lớn nhất)
 
 ### Ví dụ với bài toán chọn nhà hàng:
 
