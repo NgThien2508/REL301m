@@ -115,6 +115,12 @@ Trong quá trình học tăng cường, tác tử (agent) phải cân bằng gi�
 - Được tính bằng cách lấy argmax của các giá trị ước tính
 - Công thức: $$A_t = \arg\max_{a} Q_t(a)$$
 
+Trong đó:
+- $\arg\max$ (argument of the maximum): trả về hành động $a$ mà tại đó $Q_t(a)$ đạt giá trị lớn nhất
+- Ví dụ: nếu có 3 hành động với $Q_t(a_1) = 5$, $Q_t(a_2) = 8$, $Q_t(a_3) = 6$
+  + $\max Q_t(a) = 8$ (giá trị lớn nhất)
+  + $\arg\max Q_t(a) = a_2$ (hành động cho giá trị lớn nhất)
+
 ### Ví dụ minh họa:
 Với dữ liệu từ 3 nhà hàng:
 - Q(A) = 8.0
