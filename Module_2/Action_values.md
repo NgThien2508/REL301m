@@ -57,3 +57,49 @@ $$Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i}{t-1}$$
 - Giá trị ước tính $Q_t(a)$ sẽ tiến dần đến giá trị thực $q_*(a)$ khi số lần thử nghiệm tăng lên
 - Đây là phương pháp đơn giản và hiệu quả để học từ trải nghiệm thực tế
 
+### Ví dụ thực tế:
+
+Giả sử một người đang thử nghiệm 3 nhà hàng khác nhau:
+
+1. **Nhà hàng A (Phở):**
+   ```
+   Lần 1: 8 điểm (Phở ngon, nước dùng đậm đà)
+   Lần 2: 7 điểm (Thịt hơi ít)
+   Lần 3: 9 điểm (Phở đặc biệt cuối tuần)
+   ```
+   $$Q_4(A) = \frac{8 + 7 + 9}{3} = \frac{24}{3} = 8.0$$
+
+2. **Nhà hàng B (Cơm):**
+   ```
+   Lần 1: 6 điểm (Cơm hơi nguội)
+   Lần 2: 8 điểm (Có món mới)
+   Lần 3: 7 điểm (Bình thường)
+   ```
+   $$Q_4(B) = \frac{6 + 8 + 7}{3} = \frac{21}{3} = 7.0$$
+
+3. **Nhà hàng C (Bún):**
+   ```
+   Lần 1: 9 điểm (Bún rất ngon)
+   Lần 2: 5 điểm (Đầu bếp nghỉ, người mới)
+   Lần 3: 6 điểm (Đang cải thiện)
+   ```
+   $$Q_4(C) = \frac{9 + 5 + 6}{3} = \frac{20}{3} \approx 6.67$$
+
+#### Phân tích so sánh
+
+1. **Xếp hạng theo điểm trung bình:**
+   - Nhà hàng A (Phở): 8.0 điểm
+   - Nhà hàng B (Cơm): 7.0 điểm
+   - Nhà hàng C (Bún): 6.67 điểm
+
+2. **Phân tích độ ổn định:**
+   - Nhà hàng A: Độ lệch chuẩn thấp (7-9 điểm), chất lượng ổn định
+   - Nhà hàng B: Độ lệch trung bình (6-8 điểm), có cải thiện
+   - Nhà hàng C: Độ lệch cao (5-9 điểm), chất lượng không ổn định
+
+
+#### Áp dụng thực tế
+- Sử dụng dữ liệu này để quyết định chọn nhà hàng cho các dịp khác nhau
+- Tiếp tục cập nhật đánh giá để có cái nhìn chính xác hơn
+- Có thể bổ sung thêm các tiêu chí khác như giá cả, thời gian chờ, không gian...
+
