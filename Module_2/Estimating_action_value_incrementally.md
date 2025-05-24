@@ -183,3 +183,9 @@ Với α = 0.1, trọng số của các phần thưởng:
 2. Lựa chọn giá trị α:
    - α lớn: Thích nghi nhanh, dao động mạnh
    - α nhỏ: Thích nghi chậm, ổn định hơn
+
+   ----------------------------------------------------------------------------------------------------------------------------  
+  ##### 7-12-2025 at 3PM.
+  ##### Course: Fundamentals of Reinforcement Learning/Module 2.
+  ##### Đọc tài liệu tại: What To Learn? Estimating Action Values.
+  ##### Học nội dung từ clip: What To Learn? Estimating Action Values/ Estimating Action Values Incrementally.

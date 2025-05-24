@@ -199,4 +199,4 @@ Dựa trên dữ liệu sau 3 lần thử:
   ##### 7-12-2025 at 9AM.
   ##### Course: Fundamentals of Reinforcement Learning/Module 2.
   ##### Đọc tài liệu tại: What To Learn? Estimating Action Values.
-  ##### Học nội dung từ clip: What To Learn? Estimating Action Values/Learning Action Values
+  ##### Học nội dung từ clip: What To Learn? Estimating Action Values/Learning Action Values.
