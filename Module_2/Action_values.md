@@ -103,3 +103,80 @@ Giả sử một người đang thử nghiệm 3 nhà hàng khác nhau:
 - Tiếp tục cập nhật đánh giá để có cái nhìn chính xác hơn
 - Có thể bổ sung thêm các tiêu chí khác như giá cả, thời gian chờ, không gian...
 
+## Lựa chọn Hành động (Action Selection)
+
+### Định nghĩa
+Trong quá trình học tăng cường, tác tử (agent) phải cân bằng giữa hai chiến lược:
+1. **Khai thác (Exploitation)**: Chọn hành động tốt nhất dựa trên kiến thức hiện tại
+2. **Khám phá (Exploration)**: Thử nghiệm các hành động mới để tìm kiếm giải pháp tốt hơn
+
+### Hành động Tham lam (Greedy Action)
+- Là hành động có giá trị ước tính cao nhất tại thời điểm hiện tại
+- Được tính bằng cách lấy argmax của các giá trị ước tính
+- Công thức: $$A_t = \underset{a}{\operatorname{argmax}} Q_t(a)$$
+
+### Ví dụ với bài toán chọn nhà hàng:
+
+Dựa trên dữ liệu sau 3 lần thử:
+
+1. **Giá trị ước tính của các nhà hàng:**
+   - Q(A) = 8.0 (Phở)
+   - Q(B) = 7.0 (Cơm)
+   - Q(C) = 6.67 (Bún)
+
+2. **Chiến lược Khai thác (Exploitation):**
+   - Chọn nhà hàng A (Phở) vì Q(A) = 8.0 là cao nhất
+   - Ưu điểm: Đảm bảo được trải nghiệm tốt dựa trên dữ liệu hiện có
+   - Nhược điểm: Có thể bỏ lỡ cơ hội tìm được nhà hàng ngon hơn
+
+3. **Chiến lược Khám phá (Exploration):**
+   - Thử nhà hàng B hoặc C mặc dù điểm thấp hơn
+   - Ưu điểm: 
+     + Có thể phát hiện sự cải thiện (ví dụ: đầu bếp mới)
+     + Tích lũy thêm thông tin về các lựa chọn khác
+   - Nhược điểm: Rủi ro có trải nghiệm không tốt
+
+### Đánh đổi giữa Khai thác và Khám phá
+
+1. **Khai thác (Exploitation):**
+   ```
+   - Khi nào sử dụng: 
+     + Cần đảm bảo trải nghiệm tốt
+     + Có thời gian giới hạn
+     + Đã có đủ thông tin về các lựa chọn
+   - Trong ví dụ: Chọn nhà hàng A cho bữa ăn quan trọng
+   ```
+
+2. **Khám phá (Exploration):**
+   ```
+   - Khi nào sử dụng:
+     + Có thời gian để thử nghiệm
+     + Muốn tìm kiếm lựa chọn tốt hơn
+     + Chưa có đủ thông tin về các lựa chọn
+   - Trong ví dụ: Thử nhà hàng B hoặc C trong bữa ăn thông thường
+   ```
+
+### Lưu ý quan trọng
+1. Không thể vừa khai thác (Exploitation) vừa khám phá (Exploration) cùng lúc
+2. Cần cân bằng giữa hai chiến lược để tối ưu hóa kết quả dài hạn
+3. Tỷ lệ giữa khai thác và khám phá có thể thay đổi theo thời gian:
+   - Giai đoạn đầu: Ưu tiên khám phá
+   - Giai đoạn sau: Ưu tiên khai thác
+
+## Kết luận
+
+### Tổng quan về Action Value
+1. **Định nghĩa và Ý nghĩa:**
+   - Action Value là giá trị kỳ vọng của phần thưởng khi thực hiện một hành động
+   - Giúp đánh giá và so sánh hiệu quả của các hành động khác nhau
+   - Là nền tảng cho việc ra quyết định trong học tăng cường
+
+2. **Phương pháp Ước tính:**
+   - Sử dụng phương pháp trung bình mẫu để ước tính giá trị thực
+   - Cập nhật liên tục dựa trên phản hồi từ môi trường
+   - Độ chính xác tăng theo số lượng mẫu thu thập được
+
+3. **Chiến lược Lựa chọn Hành động:**
+   - Cân bằng giữa Khai thác (Exploitation) và Khám phá (Exploration)
+   - Khai thác: tận dụng kiến thức hiện có để đạt phần thưởng cao
+   - Khám phá: tìm kiếm các cơ hội mới tiềm năng
