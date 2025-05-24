@@ -108,20 +108,112 @@ Với α = 0.1, trọng số của các phần thưởng:
 - Ba lần trước: 0.1 × 0.9³ = 0.073
 ```
 
-## Kết luận với Ví dụ Tổng hợp
+## Bài toán Non-stationary (Môi trường Không Dừng)
+
+### 1. Định nghĩa
+- **Stationary (Môi trường Dừng)**: Phân phối xác suất của phần thưởng KHÔNG thay đổi theo thời gian
+- **Non-stationary (Môi trường Không Dừng)**: Phân phối xác suất của phần thưởng CÓ thay đổi theo thời gian
+
+### 2. Ví dụ Thực tế: Nhà hàng
 ```
-So sánh hai phương pháp với dữ liệu thay đổi:
-[8, 8, 7, 7, 7.5, 7.5]
+Nhà hàng A (Môi trường Stationary):
+- Đầu bếp không thay đổi
+- Menu cố định
+- Chất lượng ổn định
+→ Điểm đánh giá dao động quanh 8.0 ± 0.5
 
-1. Trung bình thông thường:
-   Q = (8+8+7+7+7.5+7.5)/6 = 7.5
+Nhà hàng B (Môi trường Non-stationary):
+- Đầu bếp thường xuyên thay đổi
+- Menu thay đổi theo mùa
+- Chất lượng không ổn định
+→ Điểm đánh giá thay đổi nhiều: 6.0 → 8.0 → 7.0
+```
 
-2. Cập nhật tăng dần (α = 0.1):
-   Q₁ = 8.0
-   Q₂ = 8.0 + 0.1(8-8) = 8.0
-   Q₃ = 8.0 + 0.1(7-8) = 7.9
-   Q₄ = 7.9 + 0.1(7-7.9) = 7.81
-   Q₅ = 7.81 + 0.1(7.5-7.81) = 7.78
-   Q₆ = 7.78 + 0.1(7.5-7.78) = 7.75
+### 3. Vấn đề với Phương pháp Trung bình Mẫu
+#### Trong môi trường Stationary:
+```
+Nhà hàng A - 10 đánh giá gần nhất:
+[8.0, 7.8, 8.2, 7.9, 8.1, 8.0, 7.8, 8.2, 7.9, 8.1]
+Trung bình = 8.0 (phản ánh chính xác chất lượng)
+```
 
-→ Phương pháp tăng dần phản ánh tốt hơn xu hướng gần đây
+#### Trong môi trường Non-stationary:
+```
+Nhà hàng B - 10 đánh giá theo thời gian:
+[6.0, 6.2, 6.0, 7.5, 7.8, 8.0, 7.5, 7.0, 6.8, 6.5]
+Trung bình = 7.0 (KHÔNG phản ánh chính xác chất lượng hiện tại)
+```
+
+### 4. Giải pháp: Sử dụng Step Size (α) Cố định
+
+#### Nguyên lý hoạt động:
+1. Thay vì sử dụng $\alpha = \frac{1}{n}$, ta sử dụng α cố định (ví dụ: 0.1)
+2. Điều này giúp ưu tiên dữ liệu gần đây hơn
+3. Công thức: $Q_{n+1} = Q_n + \alpha(R_n - Q_n)$
+
+#### Phân tích trọng số:
+Với α = 0.1, trọng số của các phần thưởng sẽ giảm dần theo thời gian:
+```
+Thời điểm hiện tại (n):   0.100 = 0.1
+Lần trước (n-1):          0.090 = 0.1 × 0.9
+Hai lần trước (n-2):      0.081 = 0.1 × 0.9²
+Ba lần trước (n-3):       0.073 = 0.1 × 0.9³
+```
+
+### 5. Ví dụ Chi tiết: Đánh giá Hiệu quả Thuốc
+```
+Một loại thuốc có hiệu quả thay đổi theo mùa:
+Mùa hè: Hiệu quả 60%
+Mùa thu: Hiệu quả 75%
+Mùa đông: Hiệu quả 90%
+
+Theo dõi bằng α = 0.1:
+
+Ban đầu (mùa hè):
+Q₁ = 60%
+
+Chuyển sang mùa thu:
+Q₂ = 60% + 0.1(75% - 60%) = 61.5%
+Q₃ = 61.5% + 0.1(75% - 61.5%) = 62.85%
+Q₄ = 62.85% + 0.1(75% - 62.85%) = 64.07%
+
+Chuyển sang mùa đông:
+Q₅ = 64.07% + 0.1(90% - 64.07%) = 66.66%
+Q₆ = 66.66% + 0.1(90% - 66.66%) = 69.00%
+
+→ Giá trị Q dần dần thích nghi với hiệu quả mới của thuốc
+```
+
+### 6. So sánh Hai Phương pháp
+
+#### Phương pháp Trung bình Mẫu ($\alpha = \frac{1}{n}$):
+```
+Ưu điểm:
+- Chính xác cho môi trường stationary
+- Hội tụ về giá trị thực
+
+Nhược điểm:
+- Phản ứng chậm với thay đổi
+- Coi trọng dữ liệu cũ và mới như nhau
+```
+
+#### Phương pháp Step Size Cố định (α = 0.1):
+```
+Ưu điểm:
+- Thích nghi nhanh với thay đổi
+- Ưu tiên dữ liệu gần đây
+- Phù hợp với môi trường non-stationary
+
+Nhược điểm:
+- Không hội tụ về một giá trị cố định
+- Luôn dao động quanh giá trị thực
+```
+
+### 7. Kết luận
+1. Chọn phương pháp phù hợp với môi trường:
+   - Môi trường ổn định → Dùng trung bình mẫu
+   - Môi trường thay đổi → Dùng step size cố định
+
+2. Lựa chọn giá trị α:
+   - α lớn (0.5-0.9): Thích nghi nhanh, dao động mạnh
+   - α nhỏ (0.1-0.3): Thích nghi chậm, ổn định hơn
