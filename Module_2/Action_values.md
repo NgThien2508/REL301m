@@ -22,7 +22,7 @@ Công thức toán học:
 
 $$q_*(a) = \mathbb{E}[R_t | A_t = a], \quad \forall a \in 1, ..., k$$
 
-+* $$q_*(a)$$ không được biết trước, vì vậy chúng ta cần ước tính nó
++ $q_{*}(a)$: giá trị thực của hành động a không được biết trước, vì vậy chúng ta cần ước tính nó
 + $R_t$: phần thưởng tại thời điểm t
 + $A_t$: hành động được chọn tại thời điểm t
 + $a$: hành động bất kỳ trong tập k hành động
