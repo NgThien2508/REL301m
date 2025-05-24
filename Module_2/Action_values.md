@@ -194,3 +194,9 @@ Dựa trên dữ liệu sau 3 lần thử:
    - Cân bằng giữa Khai thác (Exploitation) và Khám phá (Exploration)
    - Khai thác: tận dụng kiến thức hiện có để đạt phần thưởng cao
    - Khám phá: tìm kiếm các cơ hội mới tiềm năng
+
+   ----------------------------------------------------------------------------------------------------------------------------                                                                                                                                    
+  ##### 7-12-2025 at 9AM.
+  ##### Course: Fundamentals of Reinforcement Learning/Module 2.
+  ##### Đọc tài liệu tại: What To Learn? Estimating Action Values.
+  ##### Học nội dung từ clip: What To Learn? Estimating Action Values/Learning Action Values
