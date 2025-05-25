@@ -196,7 +196,7 @@ Dựa trên dữ liệu sau 3 lần thử:
    - Khám phá: tìm kiếm các cơ hội mới tiềm năng
 
    ----------------------------------------------------------------------------------------------------------------------------                                                                                                                                    
-  ##### 7-12-2025 at 9AM.
+  ##### 5-13-2025 at 9AM.
   ##### Course: Fundamentals of Reinforcement Learning/Module 2.
   ##### Đọc tài liệu tại: What To Learn? Estimating Action Values.
   ##### Học nội dung từ clip: What To Learn? Estimating Action Values/Learning Action Values.
