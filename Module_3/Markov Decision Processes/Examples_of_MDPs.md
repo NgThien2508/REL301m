@@ -110,43 +110,33 @@ $$R(\text{low}, \text{recharge}) = 0$$
 ### 2.1. Về Trạng thái (State - $\mathcal{S}$)
 
 **Cấp thấp (Low-level):**
-```
 Ví dụ: Camera theo dõi giao thông
-$$\mathcal{S} = \{\mathbf{x} \in \mathbb{R}^n \mid \mathbf{x} \text{ là vector pixel}\}$$
-```
+$\mathcal{S} = \{\mathbf{x} \in \mathbb{R}^n \mid \mathbf{x} \text{ là vector pixel}\}$
 
 **Cấp cao (High-level):**
-```
 Ví dụ: Hệ thống quản lý kho
-$$\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\}\}$$
-```
+$\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\}\}$
 
 ### 2.2. Về Hành động (Action - $\mathcal{A}$)
 
 **Cấp thấp:**
-```
 Ví dụ: Robot công nghiệp
-$$\mathcal{A} = \{(\mathbf{v}, \boldsymbol{\theta}, \boldsymbol{\omega}) \mid \mathbf{v} \in \mathbb{R}^3, \boldsymbol{\theta} \in [-\pi,\pi]^3, \boldsymbol{\omega} \in \mathbb{R}^3\}$$
-```
+$\mathcal{A} = \{(\mathbf{v}, \boldsymbol{\theta}, \boldsymbol{\omega}) \mid \mathbf{v} \in \mathbb{R}^3, \boldsymbol{\theta} \in [-\pi,\pi]^3, \boldsymbol{\omega} \in \mathbb{R}^3\}$
 
 **Cấp cao:**
-```
 Ví dụ: Hệ thống tự động hóa
-$$\mathcal{A} = \{\text{"Di chuyển"}, \text{"Nhặt"}, \text{"Tối ưu"}\}$$
-```
+$\mathcal{A} = \{\text{"Di chuyển"}, \text{"Nhặt"}, \text{"Tối ưu"}\}$
 
 ### 2.3. Về Thời gian ($t$)
 
 **Thời gian rời rạc:**
-```
-$$t \in \{0, \Delta t, 2\Delta t, \ldots\}$$ với $$\Delta t$$ là chu kỳ cập nhật
+$t \in \{0, \Delta t, 2\Delta t, \ldots\}$ với $\Delta t$ là chu kỳ cập nhật
 
 Ví dụ 1: Robot nhà máy
-$$\Delta t = 100\text{ ms}$$
+$\Delta t = 100\text{ ms}$
 
 Ví dụ 2: Giao dịch chứng khoán
-$$\Delta t = 1\text{ ngày}$$
-```
+$\Delta t = 1\text{ ngày}$
 
 ## 3. Ví dụ Thực tế: Robot Gắp và Đặt
 
@@ -154,42 +144,54 @@ $$\Delta t = 1\text{ ngày}$$
 
 **Trạng thái (State):**
 ```python
-$$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta}, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$$
+# Định nghĩa không gian trạng thái
+# S = {(θ, ω, g, p) | θ, ω ∈ ℝ³, g ∈ {0,1}, p ∈ ℝ³}
 
 state = {
-    'joint_angles': $$[\theta_1, \theta_2, \theta_3]$$,    # Góc các khớp
-    'joint_velocities': $$[\omega_1, \omega_2, \omega_3]$$, # Vận tốc góc
-    'gripper_state': $$g \in \{0,1\}$$,      # Trạng thái kẹp
-    'object_position': $$\mathbf{p} = (x, y, z)$$         # Vị trí đối tượng
+    'joint_angles': [θ₁, θ₂, θ₃],         # Góc các khớp
+    'joint_velocities': [ω₁, ω₂, ω₃],      # Vận tốc góc
+    'gripper_state': 'g ∈ {0,1}',          # Trạng thái kẹp
+    'object_position': '(x, y, z)'         # Vị trí đối tượng
 }
 ```
+
+Trong đó:
+$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta}, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$
 
 **Hành động (Action):**
 ```python
-$$\mathcal{A} = \{(\mathbf{V}, \text{cmd}) \mid \mathbf{V} \in \mathbb{R}^3, \text{cmd} \in \{\text{"open"}, \text{"close"}\}\}$$
+# Định nghĩa không gian hành động
+# A = {(V, cmd) | V ∈ ℝ³, cmd ∈ {"open", "close"}}
 
 action = {
-    'motor_voltages': $$[V_1, V_2, V_3]$$,  # Điện áp động cơ
-    'gripper_command': $$\text{"open"}/\text{"close"}$$   # Điều khiển kẹp
+    'motor_voltages': [V₁, V₂, V₃],        # Điện áp động cơ
+    'gripper_command': 'open/close'         # Điều khiển kẹp
 }
 ```
 
+Trong đó:
+$\mathcal{A} = \{(\mathbf{V}, \text{cmd}) \mid \mathbf{V} \in \mathbb{R}^3, \text{cmd} \in \{\text{"open"}, \text{"close"}\}\}$
+
 **Phần thưởng (Reward):**
 ```python
-$$\mathcal{R}(s,a,s') = \begin{cases}
+# Định nghĩa hàm phần thưởng
+# R(s,a,s') = +100 (thành công), -E(a) (năng lượng), -50 (rơi), -30 (va chạm)
+
+reward = {
+    'success': +100,        # Đặt thành công
+    'energy': '-E(a)',      # Chi phí năng lượng
+    'drop': -50,           # Làm rơi vật
+    'collision': -30       # Va chạm
+}
+```
+
+Trong đó:
+$\mathcal{R}(s,a,s') = \begin{cases}
 +100 & \text{khi đặt thành công} \\
 -E(a) & \text{chi phí năng lượng} \\
 -50 & \text{khi làm rơi vật} \\
 -30 & \text{khi va chạm}
-\end{cases}$$
-
-reward = {
-    'success': +100,
-    'energy': $$-E(a)$$,
-    'drop': -50,
-    'collision': -30
-}
-```
+\end{cases}$
 
 ### 3.2. Ứng dụng Thực tế
 
