@@ -16,94 +16,94 @@ Robot tái chế là một ví dụ điển hình về MDP, giúp chúng ta hi�
 #### A. Trạng thái (State - $\mathcal{S}$)
 **Định nghĩa:** Trạng thái là mức năng lượng pin của robot
 
-$\mathcal{S} = \{low, high\}$
+$$\mathcal{S} = \{\text{low}, \text{high}\}$$
 
 **Giải thích:**
-- $s = high$: Pin đầy, robot hoạt động tốt
-- $s = low$: Pin yếu, cần cân nhắc sạc
+- $s = \text{high}$: Pin đầy, robot hoạt động tốt
+- $s = \text{low}$: Pin yếu, cần cân nhắc sạc
 - Chỉ có 2 trạng thái để đơn giản hóa bài toán
 
 #### B. Hành động (Action - $\mathcal{A}$)
 **Khi pin cao:**
 
-$\mathcal{A}(high) = \{search, wait\}$
+$$\mathcal{A}(\text{high}) = \{\text{search}, \text{wait}\}$$
 
-- $a = search$: Chủ động tìm kiếm lon
-- $a = wait$: Đứng yên chờ lon được mang đến
+- $a = \text{search}$: Chủ động tìm kiếm lon
+- $a = \text{wait}$: Đứng yên chờ lon được mang đến
 
 **Khi pin thấp:**
 
-$\mathcal{A}(low) = \{search, wait, recharge\}$
+$$\mathcal{A}(\text{low}) = \{\text{search}, \text{wait}, \text{recharge}\}$$
 
-- Có thêm lựa chọn $a = recharge$: Đi sạc pin
+- Có thêm lựa chọn $a = \text{recharge}$: Đi sạc pin
 - Không cho phép sạc khi pin cao (vì không cần thiết)
 
 #### C. Phần thưởng (Reward - $\mathcal{R}$)
 
-$\mathcal{R}(s,a) = \begin{cases} 
-+10 & \text{ khi } a = \text{search} \text{ và tìm được lon} \\
-+1 & \text{ khi } a = \text{wait} \\
--20 & \text{ khi hết pin cần cứu hộ}
-\end{cases}$
+$$\mathcal{R}(s,a) = \begin{cases} 
++10 & \text{khi } a = \text{search} \text{ và tìm được lon} \\
++1 & \text{khi } a = \text{wait} \\
+-20 & \text{khi hết pin cần cứu hộ}
+\end{cases}$$
 
 ### 1.3. Động lực Hệ thống (Chi tiết)
 
-#### A. Từ Trạng thái Pin Cao ($s = high$)
+#### A. Từ Trạng thái Pin Cao ($s = \text{high}$)
 
-1. **Hành động Tìm kiếm ($a = search$):**
+1. **Hành động Tìm kiếm ($a = \text{search}$):**
 
-$P(s'=high|s=high,a=search) = \alpha$ 
+$$P(s' = \text{high} \mid s = \text{high}, a = \text{search}) = \alpha$$
 
-$P(s'=low|s=high,a=search) = 1-\alpha$
+$$P(s' = \text{low} \mid s = \text{high}, a = \text{search}) = 1 - \alpha$$
 
-$R(high,search) = +10$
+$$R(\text{high}, \text{search}) = +10$$
 
 *Giải thích:*
 - $\alpha$ là xác suất pin vẫn cao sau khi tìm kiếm
 - $(1-\alpha)$ là xác suất pin giảm xuống thấp
 - Luôn nhận được $+10$ điểm nếu tìm thấy lon
 
-2. **Hành động Chờ đợi ($a = wait$):**
+2. **Hành động Chờ đợi ($a = \text{wait}$):**
 
-$P(s'=high|s=high,a=wait) = 1.0$
+$$P(s' = \text{high} \mid s = \text{high}, a = \text{wait}) = 1.0$$
 
-$R(high,wait) = +1$
+$$R(\text{high}, \text{wait}) = +1$$
 
 #### B. Từ Trạng thái Pin Thấp ($s = \text{low}$)
 
 1. **Hành động Tìm kiếm ($a = \text{search}$):**
 
-$P(s' = \text{low} \mid s = \text{low}, a = \text{search}) = \beta$
+$$P(s' = \text{low} \mid s = \text{low}, a = \text{search}) = \beta$$
 
-$P(s' = \text{high} \mid s = \text{low}, a = \text{search}) = 1 - \beta$
+$$P(s' = \text{high} \mid s = \text{low}, a = \text{search}) = 1 - \beta$$
 
-$R(\text{low}, \text{search}) = \begin{cases}
+$$R(\text{low}, \text{search}) = \begin{cases}
 +10 & \text{nếu tiếp tục hoạt động} \\
 -20 & \text{nếu hết pin}
-\end{cases}$
+\end{cases}$$
 
-2. **Hành động Chờ đợi ($a = wait$):**
+2. **Hành động Chờ đợi ($a = \text{wait}$):**
 
-$P(s'=low|s=low,a=wait) = 1.0$
+$$P(s' = \text{low} \mid s = \text{low}, a = \text{wait}) = 1.0$$
 
-$R(low,wait) = +1$
+$$R(\text{low}, \text{wait}) = +1$$
 
-3. **Hành động Sạc pin ($a = recharge$):**
+3. **Hành động Sạc pin ($a = \text{recharge}$):**
 
-$P(s'=high|s=low,a=recharge) = 1.0$
+$$P(s' = \text{high} \mid s = \text{low}, a = \text{recharge}) = 1.0$$
 
-$R(low,recharge) = 0$
+$$R(\text{low}, \text{recharge}) = 0$$
 
 ### 1.4. Chiến lược Tối ưu ($\pi^*$)
 
-**Khi pin cao ($s = high$):**
-- $\pi^*(high) = search$ nếu $\alpha > \frac{9}{10}$ (pin ít khi giảm)
-- $\pi^*(high) = wait$ nếu $\alpha < \frac{9}{10}$ (pin dễ giảm)
+**Khi pin cao ($s = \text{high}$):**
+- $\pi^*(\text{high}) = \text{search}$ nếu $\alpha > \frac{9}{10}$ (pin ít khi giảm)
+- $\pi^*(\text{high}) = \text{wait}$ nếu $\alpha < \frac{9}{10}$ (pin dễ giảm)
 
-**Khi pin thấp ($s = low$):**
-- $\pi^*(low) = recharge$ nếu $\beta < \frac{30}{31}$ (dễ hết pin)
-- $\pi^*(low) = search$ nếu $\beta > \frac{30}{31}$ (ít rủi ro)
-- $\pi^*(low) = wait$ là lựa chọn an toàn
+**Khi pin thấp ($s = \text{low}$):**
+- $\pi^*(\text{low}) = \text{recharge}$ nếu $\beta < \frac{30}{31}$ (dễ hết pin)
+- $\pi^*(\text{low}) = \text{search}$ nếu $\beta > \frac{30}{31}$ (ít rủi ro)
+- $\pi^*(\text{low}) = \text{wait}$ là lựa chọn an toàn
 
 ## 2. Tính Linh Hoạt của MDP
 
@@ -112,13 +112,13 @@ $R(low,recharge) = 0$
 **Cấp thấp (Low-level):**
 ```
 Ví dụ: Camera theo dõi giao thông
-$\mathcal{S} = \{\mathbf{x} \in \mathbb{R}^n \mid \mathbf{x} \text{ là vector pixel}\}$
+$$\mathcal{S} = \{\mathbf{x} \in \mathbb{R}^n \mid \mathbf{x} \text{ là vector pixel}\}$$
 ```
 
 **Cấp cao (High-level):**
 ```
 Ví dụ: Hệ thống quản lý kho
-$\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\}\}$
+$$\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\}\}$$
 ```
 
 ### 2.2. Về Hành động (Action - $\mathcal{A}$)
@@ -126,26 +126,26 @@ $\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\
 **Cấp thấp:**
 ```
 Ví dụ: Robot công nghiệp
-$\mathcal{A} = \{(\mathbf{v}, \boldsymbol{\theta}, \boldsymbol{\omega}) \mid \mathbf{v} \in \mathbb{R}^3, \boldsymbol{\theta} \in [-\pi,\pi]^3, \boldsymbol{\omega} \in \mathbb{R}^3\}$
+$$\mathcal{A} = \{(\mathbf{v}, \boldsymbol{\theta}, \boldsymbol{\omega}) \mid \mathbf{v} \in \mathbb{R}^3, \boldsymbol{\theta} \in [-\pi,\pi]^3, \boldsymbol{\omega} \in \mathbb{R}^3\}$$
 ```
 
 **Cấp cao:**
 ```
 Ví dụ: Hệ thống tự động hóa
-$\mathcal{A} = \{\text{"Di chuyển"}, \text{"Nhặt"}, \text{"Tối ưu"}\}$
+$$\mathcal{A} = \{\text{"Di chuyển"}, \text{"Nhặt"}, \text{"Tối ưu"}\}$$
 ```
 
 ### 2.3. Về Thời gian ($t$)
 
 **Thời gian rời rạc:**
 ```
-$t \in \{0, \Delta t, 2\Delta t, \ldots\}$ với $\Delta t$ là chu kỳ cập nhật
+$$t \in \{0, \Delta t, 2\Delta t, \ldots\}$$ với $$\Delta t$$ là chu kỳ cập nhật
 
 Ví dụ 1: Robot nhà máy
-$\Delta t = 100\text{ ms}$
+$$\Delta t = 100\text{ ms}$$
 
 Ví dụ 2: Giao dịch chứng khoán
-$\Delta t = 1\text{ ngày}$
+$$\Delta t = 1\text{ ngày}$$
 ```
 
 ## 3. Ví dụ Thực tế: Robot Gắp và Đặt
@@ -154,38 +154,38 @@ $\Delta t = 1\text{ ngày}$
 
 **Trạng thái (State):**
 ```python
-$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta}, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$
+$$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta}, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$$
 
 state = {
-    'joint_angles': $[\theta_1, \theta_2, \theta_3]$,    # Góc các khớp
-    'joint_velocities': $[\omega_1, \omega_2, \omega_3]$, # Vận tốc góc
-    'gripper_state': $g \in \{0,1\}$,      # Trạng thái kẹp
-    'object_position': $\mathbf{p} = (x, y, z)$         # Vị trí đối tượng
+    'joint_angles': $$[\theta_1, \theta_2, \theta_3]$$,    # Góc các khớp
+    'joint_velocities': $$[\omega_1, \omega_2, \omega_3]$$, # Vận tốc góc
+    'gripper_state': $$g \in \{0,1\}$$,      # Trạng thái kẹp
+    'object_position': $$\mathbf{p} = (x, y, z)$$         # Vị trí đối tượng
 }
 ```
 
 **Hành động (Action):**
 ```python
-$\mathcal{A} = \{(\mathbf{V}, \text{cmd}) \mid \mathbf{V} \in \mathbb{R}^3, \text{cmd} \in \{\text{"open"}, \text{"close"}\}\}$
+$$\mathcal{A} = \{(\mathbf{V}, \text{cmd}) \mid \mathbf{V} \in \mathbb{R}^3, \text{cmd} \in \{\text{"open"}, \text{"close"}\}\}$$
 
 action = {
-    'motor_voltages': $[V_1, V_2, V_3]$,  # Điện áp động cơ
-    'gripper_command': $\text{"open"}/\text{"close"}$   # Điều khiển kẹp
+    'motor_voltages': $$[V_1, V_2, V_3]$$,  # Điện áp động cơ
+    'gripper_command': $$\text{"open"}/\text{"close"}$$   # Điều khiển kẹp
 }
 ```
 
 **Phần thưởng (Reward):**
 ```python
-$\mathcal{R}(s,a,s') = \begin{cases}
+$$\mathcal{R}(s,a,s') = \begin{cases}
 +100 & \text{khi đặt thành công} \\
 -E(a) & \text{chi phí năng lượng} \\
 -50 & \text{khi làm rơi vật} \\
 -30 & \text{khi va chạm}
-\end{cases}$
+\end{cases}$$
 
 reward = {
     'success': +100,
-    'energy': $-E(a)$,
+    'energy': $$-E(a)$$,
     'drop': -50,
     'collision': -30
 }
