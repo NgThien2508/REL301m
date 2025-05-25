@@ -41,9 +41,9 @@ $\mathcal{A}(low) = \{search, wait, recharge\}$
 #### C. Phần thưởng (Reward - $\mathcal{R}$)
 
 $\mathcal{R}(s,a) = \begin{cases} 
-+10 & \text{khi } a = search \text{ và tìm được lon} \\
-+1 & \text{khi } a = wait \\
--20 & \text{khi hết pin cần cứu hộ}
++10 & \text{ khi } a = \text{search} \text{ và tìm được lon} \\
++1 & \text{ khi } a = \text{wait} \\
+-20 & \text{ khi hết pin cần cứu hộ}
 \end{cases}$
 
 ### 1.3. Động lực Hệ thống (Chi tiết)
@@ -69,17 +69,17 @@ $P(s'=high|s=high,a=wait) = 1.0$
 
 $R(high,wait) = +1$
 
-#### B. Từ Trạng thái Pin Thấp ($s = low$)
+#### B. Từ Trạng thái Pin Thấp ($s = \text{low}$)
 
-1. **Hành động Tìm kiếm ($a = search$):**
+1. **Hành động Tìm kiếm ($a = \text{search}$):**
 
-$P(s'=low|s=low,a=search) = \beta$
+$P(s'=\text{low}|s=\text{low},a=\text{search}) = \beta$
 
-$P(s'=high|s=low,a=search) = 1-\beta$
+$P(s'=\text{high}|s=\text{low},a=\text{search}) = 1-\beta$
 
-$R(low,search) = \begin{cases}
-+10 & \text{nếu tiếp tục hoạt động} \\
--20 & \text{nếu hết pin}
+$R(\text{low},\text{search}) = \begin{cases}
++10 & \text{ nếu tiếp tục hoạt động} \\
+-20 & \text{ nếu hết pin}
 \end{cases}$
 
 2. **Hành động Chờ đợi ($a = wait$):**
@@ -112,13 +112,13 @@ $R(low,recharge) = 0$
 **Cấp thấp (Low-level):**
 ```
 Ví dụ: Camera theo dõi giao thông
-$\mathcal{S} = \{x \in \mathbb{R}^n | x \text{ là vector pixel}\}$
+$\mathcal{S} = \{\mathbf{x} \in \mathbb{R}^n \mid \mathbf{x} \text{ là vector pixel}\}$
 ```
 
 **Cấp cao (High-level):**
 ```
 Ví dụ: Hệ thống quản lý kho
-$\mathcal{S} = \{(q,l,p) | q \text{ là số lượng}, l \text{ là vị trí}, p \text{ là trạng thái}\}$
+$\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\}\}$
 ```
 
 ### 2.2. Về Hành động (Action - $\mathcal{A}$)
@@ -126,7 +126,7 @@ $\mathcal{S} = \{(q,l,p) | q \text{ là số lượng}, l \text{ là vị trí},
 **Cấp thấp:**
 ```
 Ví dụ: Robot công nghiệp
-$\mathcal{A} = \{(v,\theta,\omega) | v \text{ là điện áp}, \theta \text{ là góc}, \omega \text{ là tốc độ}\}$
+$\mathcal{A} = \{(v,\theta,\omega) \mid v \in \mathbb{R}^3, \theta \in [-\pi,\pi]^3, \omega \in \mathbb{R}^3\}$
 ```
 
 **Cấp cao:**
@@ -154,19 +154,19 @@ $\Delta t = 1 \text{ ngày}$
 
 **Trạng thái (State):**
 ```python
-$\mathcal{S} = \{(θ, ω, g, p) | θ \in \mathbb{R}^3, ω \in \mathbb{R}^3, g \in \{0,1\}, p \in \mathbb{R}^3\}$
+$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta} \in \mathbb{R}^3, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$
 
 state = {
-    'joint_angles': $[θ_1, θ_2, θ_3]$,    # Góc các khớp
-    'joint_velocities': $[ω_1, ω_2, ω_3]$, # Vận tốc góc
+    'joint_angles': $[\theta_1, \theta_2, \theta_3]$,    # Góc các khớp
+    'joint_velocities': $[\omega_1, \omega_2, \omega_3]$, # Vận tốc góc
     'gripper_state': $g \in \{0,1\}$,      # Trạng thái kẹp
-    'object_position': $(x, y, z)$         # Vị trí đối tượng
+    'object_position': $\mathbf{p} = (x, y, z)$         # Vị trí đối tượng
 }
 ```
 
 **Hành động (Action):**
 ```python
-$\mathcal{A} = \{(V, cmd) | V \in \mathbb{R}^3, cmd \in \{\text{"open"}, \text{"close"}\}\}$
+$\mathcal{A} = \{(\mathbf{V}, \text{cmd}) \mid \mathbf{V} \in \mathbb{R}^3, \text{cmd} \in \{\text{"open"}, \text{"close"}\}\}$
 
 action = {
     'motor_voltages': $[V_1, V_2, V_3]$,  # Điện áp động cơ
@@ -177,15 +177,15 @@ action = {
 **Phần thưởng (Reward):**
 ```python
 $\mathcal{R}(s,a,s') = \begin{cases}
-+100 & \text{đặt thành công} \\
--E(a) & \text{năng lượng tiêu thụ} \\
--50 & \text{làm rơi vật} \\
--30 & \text{va chạm}
++100 & \text{ khi đặt thành công} \\
+-E(a) & \text{ chi phí năng lượng} \\
+-50 & \text{ khi làm rơi vật} \\
+-30 & \text{ khi va chạm}
 \end{cases}$
 
 reward = {
     'success': +100,
-    'energy': $-1 \times E(a)$,
+    'energy': $-E(a)$,
     'drop': -50,
     'collision': -30
 }
