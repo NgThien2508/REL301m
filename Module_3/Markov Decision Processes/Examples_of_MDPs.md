@@ -73,11 +73,11 @@ $R(high,wait) = +1$
 
 1. **Hành động Tìm kiếm ($a = \text{search}$):**
 
-$P(s'=\text{low}|s=\text{low},a=\text{search}) = \beta$
+$P(s' = \text{low} \mid s = \text{low}, a = \text{search}) = \beta$
 
-$P(s'=\text{high}|s=\text{low},a=\text{search}) = 1-\beta$
+$P(s' = \text{high} \mid s = \text{low}, a = \text{search}) = 1-\beta$
 
-$R(\text{low},\text{search}) = \begin{cases}
+$R(\text{low}, \text{search}) = \begin{cases}
 +10 & \text{ nếu tiếp tục hoạt động} \\
 -20 & \text{ nếu hết pin}
 \end{cases}$
@@ -126,7 +126,7 @@ $\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\
 **Cấp thấp:**
 ```
 Ví dụ: Robot công nghiệp
-$\mathcal{A} = \{(v,\theta,\omega) \mid v \in \mathbb{R}^3, \theta \in [-\pi,\pi]^3, \omega \in \mathbb{R}^3\}$
+$\mathcal{A} = \{(v, \theta, \omega) \mid v \in \mathbb{R}^3, \theta \in [-\pi,\pi]^3, \omega \in \mathbb{R}^3\}$
 ```
 
 **Cấp cao:**
@@ -170,7 +170,7 @@ $\mathcal{A} = \{(\mathbf{V}, \text{cmd}) \mid \mathbf{V} \in \mathbb{R}^3, \tex
 
 action = {
     'motor_voltages': $[V_1, V_2, V_3]$,  # Điện áp động cơ
-    'gripper_command': 'open/close'        # Điều khiển kẹp
+    'gripper_command': $\text{"open"}/\text{"close"}$   # Điều khiển kẹp
 }
 ```
 
