@@ -21,9 +21,9 @@ Ví dụ với k = 3:
 
 ### 2.1 Định nghĩa toán học
 - **Giá trị thực của hành động** (True Action Value):
-  ```latex
-  q_*(a) = \mathbb{E}[R_t | A_t = a], \forall a \in \{1,\ldots,k\}
-  ```
+  
+  $$q_*(a) = \mathbb{E}[R_t | A_t = a], \forall a \in \{1,\ldots,k\}$$
+  
   Trong đó:
   - $q_*(a)$: Giá trị thực của hành động $a$
   - $\mathbb{E}[R_t]$: Kỳ vọng phần thưởng tại thời điểm $t$
@@ -31,14 +31,13 @@ Ví dụ với k = 3:
 
 ### 2.2 Ước lượng giá trị
 1. **Phương pháp trung bình mẫu (Sample-Average Method)**:
-   ```latex
-   Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \cdot \mathbb{1}_{A_i=a}}{\sum_{i=1}^{t-1} \mathbb{1}_{A_i=a}} = \frac{\text{Tổng phần thưởng khi chọn }a}{\text{Số lần chọn }a}
-   ```
+   
+   $$Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \cdot \mathbb{1}_{A_i=a}}{\sum_{i=1}^{t-1} \mathbb{1}_{A_i=a}} = \frac{\text{Tổng phần thưởng khi chọn }a}{\text{Số lần chọn }a}$$
 
 2. **Cập nhật gia tăng (Incremental Update)**:
-   ```latex
-   Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)}[R_t - Q_t(a)]
-   ```
+   
+   $$Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)}[R_t - Q_t(a)]$$
+   
    Trong đó:
    - $Q_t(a)$: Ước lượng hiện tại
    - $R_t$: Phần thưởng mới
@@ -57,12 +56,12 @@ Ví dụ với k = 3:
   - Chọn hành động tốt nhất đã biết
 
 ### 3.2 Phương pháp ε-greedy
-```latex
-A_t \leftarrow \begin{cases}
+
+$$A_t \leftarrow \begin{cases}
     \arg\max_a Q_t(a) & \text{với xác suất } 1-\varepsilon \\
     a \sim \text{Uniform}(\{a_1,\ldots,a_k\}) & \text{với xác suất } \varepsilon
-\end{cases}
-```
+\end{cases}$$
+
 - $\varepsilon$: Tỷ lệ thăm dò (thường 0.1 hoặc nhỏ hơn)
 - $1-\varepsilon$: Tỷ lệ khai thác
 - Uniform: Chọn ngẫu nhiên đều
@@ -82,9 +81,9 @@ A_t \leftarrow \begin{cases}
 ## 5. Phương pháp UCB (Upper-Confidence Bound)
 
 ### 5.1 Công thức
-```latex
-A_t = \arg\max_a \left[Q_t(a) + c\sqrt{\frac{\ln t}{N_t(a)}}\right]
-```
+
+$$A_t = \arg\max_a \left[Q_t(a) + c\sqrt{\frac{\ln t}{N_t(a)}}\right]$$
+
 Trong đó:
 - $Q_t(a)$: Phần khai thác (exploit)
 - $c\sqrt{\frac{\ln t}{N_t(a)}}$: Phần thăm dò (explore)
