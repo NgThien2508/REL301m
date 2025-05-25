@@ -102,7 +102,7 @@ K-Armed Bandit là nền tảng cho các khái niệm quan trọng trong học t
 - Ra quyết định trong điều kiện không chắc chắn
 
 -------------------------------------------
-##### 8-12-2025 at 10PM.
+##### 5-19-2025 at 10PM.
 ##### Course: Fundamentals of Reinforcement Learning/Module 2.
 ##### Đọc tài liệu tại: Week 1 Summary
 ##### Học nội dung từ clip: Week 1 Summary
