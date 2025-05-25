@@ -126,7 +126,7 @@ $\mathcal{S} = \{(q,l,p) \mid q \in \mathbb{N}, l \in \mathbb{R}^3, p \in \{0,1\
 **Cấp thấp:**
 ```
 Ví dụ: Robot công nghiệp
-$\mathcal{A} = \{(v, \theta, \omega) \mid v \in \mathbb{R}^3, \theta \in [-\pi,\pi]^3, \omega \in \mathbb{R}^3\}$
+$\mathcal{A} = \{(\mathbf{v}, \boldsymbol{\theta}, \boldsymbol{\omega}) \mid \mathbf{v} \in \mathbb{R}^3, \boldsymbol{\theta} \in [-\pi,\pi]^3, \boldsymbol{\omega} \in \mathbb{R}^3\}$
 ```
 
 **Cấp cao:**
@@ -145,7 +145,7 @@ Ví dụ 1: Robot nhà máy
 $\Delta t = 100\text{ ms}$
 
 Ví dụ 2: Giao dịch chứng khoán
-$\Delta t = 1 \text{ ngày}$
+$\Delta t = 1\text{ ngày}$
 ```
 
 ## 3. Ví dụ Thực tế: Robot Gắp và Đặt
@@ -154,7 +154,7 @@ $\Delta t = 1 \text{ ngày}$
 
 **Trạng thái (State):**
 ```python
-$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta} \in \mathbb{R}^3, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$
+$\mathcal{S} = \{(\boldsymbol{\theta}, \boldsymbol{\omega}, g, \mathbf{p}) \mid \boldsymbol{\theta}, \boldsymbol{\omega} \in \mathbb{R}^3, g \in \{0,1\}, \mathbf{p} \in \mathbb{R}^3\}$
 
 state = {
     'joint_angles': $[\theta_1, \theta_2, \theta_3]$,    # Góc các khớp
