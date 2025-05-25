@@ -21,28 +21,29 @@ Ví dụ với k = 3:
 
 ### 2.1 Định nghĩa toán học
 - **Giá trị thực của hành động** (True Action Value):
+  ```latex
+  q_*(a) = \mathbb{E}[R_t | A_t = a], \forall a \in \{1,\ldots,k\}
   ```
-  q*(a) = E[Rt | At = a]  ∀a ∈ {1,...,k}
-  ```
-  - q*(a): Giá trị thực của hành động a
-  - E[Rt]: Kỳ vọng phần thưởng tại thời điểm t
-  - At = a: Khi chọn hành động a
+  Trong đó:
+  - $q_*(a)$: Giá trị thực của hành động $a$
+  - $\mathbb{E}[R_t]$: Kỳ vọng phần thưởng tại thời điểm $t$
+  - $A_t = a$: Khi chọn hành động $a$
 
 ### 2.2 Ước lượng giá trị
 1. **Phương pháp trung bình mẫu (Sample-Average Method)**:
-   ```
-   Qt(a) = (Tổng phần thưởng khi chọn a) / (Số lần chọn a)
-         = Σ(Rt) / (t-1)
+   ```latex
+   Q_t(a) = \frac{\sum_{i=1}^{t-1} R_i \cdot \mathbb{1}_{A_i=a}}{\sum_{i=1}^{t-1} \mathbb{1}_{A_i=a}} = \frac{\text{Tổng phần thưởng khi chọn }a}{\text{Số lần chọn }a}
    ```
 
 2. **Cập nhật gia tăng (Incremental Update)**:
+   ```latex
+   Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)}[R_t - Q_t(a)]
    ```
-   Qt+1(a) = Qt(a) + 1/Nt(a) * [Rt - Qt(a)]
-   ```
-   - Qt(a): Ước lượng hiện tại
-   - Rt: Phần thưởng mới
-   - Nt(a): Số lần chọn a
-   - [Rt - Qt(a)]: Sai số
+   Trong đó:
+   - $Q_t(a)$: Ước lượng hiện tại
+   - $R_t$: Phần thưởng mới
+   - $N_t(a)$: Số lần chọn $a$
+   - $[R_t - Q_t(a)]$: Sai số
 
 ## 3. Thăm dò và Khai thác (Exploration vs. Exploitation)
 
@@ -56,37 +57,38 @@ Ví dụ với k = 3:
   - Chọn hành động tốt nhất đã biết
 
 ### 3.2 Phương pháp ε-greedy
+```latex
+A_t \leftarrow \begin{cases}
+    \arg\max_a Q_t(a) & \text{với xác suất } 1-\varepsilon \\
+    a \sim \text{Uniform}(\{a_1,\ldots,a_k\}) & \text{với xác suất } \varepsilon
+\end{cases}
 ```
-At ← {
-    argmax Qt(a)               với xác suất 1-ε
-    a ~ Uniform({a1...ak})     với xác suất ε
-}
-```
-- ε: Tỷ lệ thăm dò (thường 0.1 hoặc nhỏ hơn)
-- 1-ε: Tỷ lệ khai thác
+- $\varepsilon$: Tỷ lệ thăm dò (thường 0.1 hoặc nhỏ hơn)
+- $1-\varepsilon$: Tỷ lệ khai thác
 - Uniform: Chọn ngẫu nhiên đều
 
 ## 4. Giá trị Khởi tạo Lạc quan (Optimistic Initial Values)
 
 ### 4.1 Nguyên lý
-- Khởi tạo Qt(a) với giá trị cao hơn q*(a)
-- Ví dụ: Q1(a) = 2.0 cho mọi a
+- Khởi tạo $Q_1(a)$ với giá trị cao hơn $q_*(a)$
+- Ví dụ: $Q_1(a) = 2.0$ cho mọi $a$
 - Tạo động lực thăm dò tự nhiên
 
 ### 4.2 Ưu điểm
 - Thăm dò có hệ thống ban đầu
 - Tự động giảm thăm dò theo thời gian
-- Không cần tham số ε
+- Không cần tham số $\varepsilon$
 
 ## 5. Phương pháp UCB (Upper-Confidence Bound)
 
 ### 5.1 Công thức
+```latex
+A_t = \arg\max_a \left[Q_t(a) + c\sqrt{\frac{\ln t}{N_t(a)}}\right]
 ```
-At = argmax[Qt(a) + c*sqrt(ln t/Nt(a))]
-```
-- Qt(a): Phần khai thác (exploit)
-- c*sqrt(ln t/Nt(a)): Phần thăm dò (explore)
-- c: Tham số kiểm soát mức độ thăm dò
+Trong đó:
+- $Q_t(a)$: Phần khai thác (exploit)
+- $c\sqrt{\frac{\ln t}{N_t(a)}}$: Phần thăm dò (explore)
+- $c$: Tham số kiểm soát mức độ thăm dò
 
 ### 5.2 Nguyên lý "Upper-Confidence Bound"
 - Tự động cân bằng thăm dò và khai thác
