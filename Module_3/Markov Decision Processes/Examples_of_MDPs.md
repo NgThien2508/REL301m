@@ -75,11 +75,11 @@ $R(high,wait) = +1$
 
 $P(s' = \text{low} \mid s = \text{low}, a = \text{search}) = \beta$
 
-$P(s' = \text{high} \mid s = \text{low}, a = \text{search}) = 1-\beta$
+$P(s' = \text{high} \mid s = \text{low}, a = \text{search}) = 1 - \beta$
 
 $R(\text{low}, \text{search}) = \begin{cases}
-+10 & \text{ nếu tiếp tục hoạt động} \\
--20 & \text{ nếu hết pin}
++10 & \text{nếu tiếp tục hoạt động} \\
+-20 & \text{nếu hết pin}
 \end{cases}$
 
 2. **Hành động Chờ đợi ($a = wait$):**
@@ -139,10 +139,10 @@ $\mathcal{A} = \{\text{"Di chuyển"}, \text{"Nhặt"}, \text{"Tối ưu"}\}$
 
 **Thời gian rời rạc:**
 ```
-$t \in \{0, \Delta t, 2\Delta t, ...\}$ với $\Delta t$ là chu kỳ cập nhật
+$t \in \{0, \Delta t, 2\Delta t, \ldots\}$ với $\Delta t$ là chu kỳ cập nhật
 
 Ví dụ 1: Robot nhà máy
-$\Delta t = 100ms$
+$\Delta t = 100\text{ ms}$
 
 Ví dụ 2: Giao dịch chứng khoán
 $\Delta t = 1 \text{ ngày}$
@@ -177,10 +177,10 @@ action = {
 **Phần thưởng (Reward):**
 ```python
 $\mathcal{R}(s,a,s') = \begin{cases}
-+100 & \text{ khi đặt thành công} \\
--E(a) & \text{ chi phí năng lượng} \\
--50 & \text{ khi làm rơi vật} \\
--30 & \text{ khi va chạm}
++100 & \text{khi đặt thành công} \\
+-E(a) & \text{chi phí năng lượng} \\
+-50 & \text{khi làm rơi vật} \\
+-30 & \text{khi va chạm}
 \end{cases}$
 
 reward = {
