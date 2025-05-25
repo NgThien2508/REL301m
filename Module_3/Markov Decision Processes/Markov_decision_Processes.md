@@ -165,7 +165,7 @@ $$P(S_{t+1}|S_t,A_t) = P(S_{t+1}|S_t,A_t,S_{t-1},A_{t-1},...,S_0,A_0)$$
 - Quản lý rủi ro
 
 ----------------------------------------------------------------------------------------------------------------------------                                                                                                                                    
-  ##### 5-17-2025 at 8AM.
+  ##### 5-20-2025 at 8AM.
   ##### Course: Fundamentals of Reinforcement Learning/Module 3.
   ##### Đọc tài liệu tại: Introduction to Markov Decision Processes.
   ##### Học nội dung từ clip: Introduction to Markov Decision Processes/Markov Decision Processes.
