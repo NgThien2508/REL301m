@@ -19,15 +19,12 @@ Giả sử trạng thái tốt nhất là $s^{*}$ (ở đây là ô gần A nh�
 
 Khi ở $s^{*}$, hành động tối ưu là đi về phía A, sau đó nhận +10 và về A', rồi tiếp tục chu trình tối ưu.
 
-Giá trị tối ưu của $s^{*}$ là:
-
-$$v^{*}(s^{*}) = -1 + \gamma v^{*}(A)$$
-
+Giá trị tối ưu của $s^{\star}$ là:
+$v^{\star}(s^{\star}) = -1 + \gamma v^{\star}(A)$
 Với A:
-$$v^{*}(A) = 10 + \gamma v^{*}(A')$$
-
+$v^{\star}(A) = 10 + \gamma v^{\star}(A')$
 Với A' là một trạng thái bình thường, tiếp tục đi về A:
-$$v^{*}(A') = -1 + \gamma v^{*}(s^{*})$$
+$v^{\star}(A') = -1 + \gamma v^{\star}(s^{\star})$
 
 ## Thiết lập hệ phương trình
 Giả sử $v^{*}(s^{*}) = x$, $v^{*}(A) = y$, $v^{*}(A') = z$.
