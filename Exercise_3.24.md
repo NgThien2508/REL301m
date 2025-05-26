@@ -8,7 +8,7 @@ Hình 3.5 cho giá trị tối ưu của trạng thái tốt nhất trong gridwo
 - Theo ví dụ 3.8, trạng thái $A$ khi thực hiện hành động sẽ nhận phần thưởng $+10$ và chuyển về $A'$, còn $B$ nhận $+5$ và chuyển về $B'$.
 - Công thức Bellman tối ưu (3.8):
 
-$$v^*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) [ r + \gamma v^*(s') ]$$
+$$v^*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v^*(s') \right]$$
 
 **Chú thích:**
 - $v^*(s)$: Giá trị tối ưu của trạng thái $s$ (tức là tổng phần thưởng kỳ vọng lớn nhất có thể nhận được khi bắt đầu từ $s$ và đi theo chính sách tối ưu).
@@ -29,26 +29,21 @@ Giả sử trạng thái tốt nhất là $s^{*}$ (ở đây là ô gần $A$ nh
 - Ta sẽ thiết lập các phương trình giá trị cho các trạng thái liên quan: $s^{*}$, $A$, $A'$.
 
 **Công thức cho từng trạng thái:**
-- Giá trị tối ưu của $s^{*}$:
 
-$$v^{*}(s^{*}) = -1 + \gamma v^{*}(A)$$
+1. Giá trị tối ưu của $s^{*}$:
+   $$v^{*}(s^{*}) = -1 + \gamma v^{*}(A)$$
+   - $-1$: phần thưởng khi đi từ $s^{*}$ đến $A$ (mỗi bước đi thông thường đều bị phạt -1).
+   - $\gamma v^{*}(A)$: giá trị chiết khấu của trạng thái $A$ tiếp theo.
 
-  - $-1$: phần thưởng khi đi từ $s^{*}$ đến $A$ (mỗi bước đi thông thường đều bị phạt -1).
-  - $\gamma v^{*}(A)$: giá trị chiết khấu của trạng thái $A$ tiếp theo.
+2. Giá trị tối ưu của $A$:
+   $$v^{*}(A) = 10 + \gamma v^{*}(A')$$
+   - $10$: phần thưởng đặc biệt khi vào $A$.
+   - $\gamma v^{*}(A')$: giá trị chiết khấu của trạng thái $A'$ tiếp theo.
 
-- Giá trị tối ưu của $A$:
-
-$$v^{*}(A) = 10 + \gamma v^{*}(A')$$
-
-  - $10$: phần thưởng đặc biệt khi vào $A$.
-  - $\gamma v^{*}(A')$: giá trị chiết khấu của trạng thái $A'$ tiếp theo.
-
-- Giá trị tối ưu của $A'$:
-
-$$v^{*}(A') = -1 + \gamma v^{*}(s^{*})$$
-
-  - $-1$: phần thưởng khi đi từ $A'$ về $s^{*}$ (bước đi thông thường).
-  - $\gamma v^{*}(s^{*})$: giá trị chiết khấu của trạng thái $s^{*}$ tiếp theo.
+3. Giá trị tối ưu của $A'$:
+   $$v^{*}(A') = -1 + \gamma v^{*}(s^{*})$$
+   - $-1$: phần thưởng khi đi từ $A'$ về $s^{*}$ (bước đi thông thường).
+   - $\gamma v^{*}(s^{*})$: giá trị chiết khấu của trạng thái $s^{*}$ tiếp theo.
 
 ## Thiết lập hệ phương trình
 Gọi:
@@ -90,9 +85,9 @@ Từ bảng giá trị tối ưu trong hình 3.5, giá trị thực tế của t
 $$v^{*}(s^{*}) = 24.444$$
 
 ## Kết luận
-**Biểu diễn ký hiệu:**
+**Biểu diễn ký hiệu cuối cùng:**
 
-$$v^{*}(s^{*}) = -1 + 0.9 [ 10 + 0.9 ( -1 + 0.9 v^{*}(s^{*}) ) ]$$
+$$v^{*}(s^{*}) = -1 + 0.9 \left[ 10 + 0.9 \left( -1 + 0.9 v^{*}(s^{*}) \right) \right]$$
 
 **Giá trị ba chữ số thập phân:**
 
