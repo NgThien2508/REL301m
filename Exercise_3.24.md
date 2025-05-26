@@ -1,103 +1,76 @@
-# Bài giải chi tiết Exercise 3.24
+# Exercise 3.24
 
-## Đề bài tóm tắt
-Hình 3.5 cho giá trị tối ưu của trạng thái tốt nhất trong gridworld là 24.4 (làm tròn 1 chữ số thập phân). Hãy sử dụng kiến thức về chính sách tối ưu và công thức (3.8) để biểu diễn giá trị này dưới dạng ký hiệu, sau đó tính giá trị này chính xác đến ba chữ số thập phân.
+**Figure 3.5** cho giá trị tối ưu của trạng thái tốt nhất trong gridworld là 24.4 (làm tròn đến một chữ số thập phân). Sử dụng công thức (3.8) và giá trị tối ưu này để biểu diễn giá trị một cách ký hiệu, sau đó tính ra đến ba chữ số thập phân.
 
-## Phân tích bài toán
-- Trạng thái tốt nhất là ô có giá trị $v^{\star}(s) = 24.4$ (ô ở hàng 1, cột 2 hoặc 3 trên lưới).
-- Theo ví dụ 3.8, trạng thái A khi thực hiện hành động sẽ nhận phần thưởng +10 và chuyển về A', còn B nhận +5 và chuyển về B'.
-- Công thức Bellman tối ưu (3.8):
+---
 
-$$v^{\star}(s) = \max_a \sum_{s', r} p(s', r | s, a) [r + \gamma v^{\star}(s')]$$
+## 1. Viết lại công thức return
 
-**Chú thích:**
-- $v^{\star}(s)$: Giá trị tối ưu của trạng thái $s$ (tức là tổng phần thưởng kỳ vọng lớn nhất có thể nhận được khi bắt đầu từ $s$ và đi theo chính sách tối ưu).
-- $a$: hành động có thể thực hiện tại trạng thái $s$.
-- $p(s', r | s, a)$: xác suất chuyển từ trạng thái $s$ sang $s'$ và nhận phần thưởng $r$ khi thực hiện hành động $a$.
-- $\gamma$: hệ số chiết khấu (discount factor), ở đây $\gamma = 0.9$.
-- $r$: phần thưởng nhận được khi chuyển trạng thái.
+$$G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \ldots = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}$$
 
-Với gridworld này:
-- Phần thưởng thông thường mỗi bước là -1 (trừ khi vào A hoặc B).
-- Hệ số chiết khấu $\gamma = 0.9$.
+---
 
-## Biểu diễn giá trị tối ưu của trạng thái tốt nhất (ký hiệu)
-Giả sử trạng thái tốt nhất là $s^{\star}$ (ở đây là ô gần A nhất, không phải A).
+## 2. Sử dụng ký hiệu $G_t^{(A)}$ cho return bắt đầu ở A
 
-**Ý tưởng:**
-- Khi ở $s^{\star}$, hành động tối ưu là đi về phía A, sau đó nhận +10 và về A', rồi tiếp tục chu trình tối ưu.
-- Ta sẽ thiết lập các phương trình giá trị cho các trạng thái liên quan: $s^{\star}$, A, A'.
+Giả sử tại trạng thái A, phần thưởng nhận được là 10 ở bước đầu, các bước sau là 0, ngoại trừ sau 5 bước lại nhận được 10 (do quay lại A):
 
-**Công thức cho từng trạng thái:**
+$$G_t^{(A)} = 10 + \gamma \cdot 0 + \gamma^2 \cdot 0 + \gamma^3 \cdot 0 + \gamma^4 \cdot 0 + \gamma^5 R_{t+6} + \gamma^6 R_{t+7} + \ldots$$
 
-1. Giá trị tối ưu của $s^{\star}$:
-   $$v^{\star}(s^{\star}) = -1 + \gamma v^{\star}(A)$$
-   - $-1$: phần thưởng khi đi từ $s^{\star}$ đến A (mỗi bước đi thông thường đều bị phạt -1).
-   - $\gamma v^{\star}(A)$: giá trị chiết khấu của trạng thái A tiếp theo.
+Vì sau 5 bước lại quay về A, nên:
 
-2. Giá trị tối ưu của A:
-   $$v^{\star}(A) = 10 + \gamma v^{\star}(A')$$
-   - $10$: phần thưởng đặc biệt khi vào A.
-   - $\gamma v^{\star}(A')$: giá trị chiết khấu của trạng thái A' tiếp theo.
+$$G_t^{(A)} = 10 + \gamma^5 G_{t+5}^{(A)}$$
 
-3. Giá trị tối ưu của A':
-   $$v^{\star}(A') = -1 + \gamma v^{\star}(s^{\star})$$
-   - $-1$: phần thưởng khi đi từ A' về $s^{\star}$ (bước đi thông thường).
-   - $\gamma v^{\star}(s^{\star})$: giá trị chiết khấu của trạng thái $s^{\star}$ tiếp theo.
+---
 
-## Thiết lập hệ phương trình
-Gọi:
-- $x = v^{\star}(s^{\star})$
-- $y = v^{\star}(A)$
-- $z = v^{\star}(A')$
+## 3. Giá trị kỳ vọng trạng thái (Value function)
 
-Ta có hệ phương trình:
+Giá trị tối ưu tại A:
 
-$$x = -1 + 0.9y$$
+$$v_{\star}(A) = \mathbb{E}[G_t | S_t = A, \pi = \pi_{\star}]$$
 
-$$y = 10 + 0.9z$$
+Theo Bellman:
 
-$$z = -1 + 0.9x$$
+$$v_{\star}(A) = 10 + \gamma^5 v_{\star}(A)$$
 
-**Chú thích:**
-- Các hệ số 0.9 là do $\gamma = 0.9$.
-- Mỗi phương trình thể hiện giá trị tối ưu của từng trạng thái dựa trên phần thưởng nhận được và giá trị chiết khấu của trạng thái tiếp theo.
+---
 
-## Giải hệ phương trình
-**Bước 1:** Thay $z$ vào $y$:
+## 4. Giải phương trình
 
-$$y = 10 + 0.9z = 10 + 0.9(-1 + 0.9x) = 10 - 0.9 + 0.81x = 9.1 + 0.81x$$
+Chuyển vế:
 
-**Bước 2:** Thay $y$ vào $x$:
+$$v_{\star}(A) - \gamma^5 v_{\star}(A) = 10$$
 
-$$x = -1 + 0.9y = -1 + 0.9(9.1 + 0.81x) = -1 + 8.19 + 0.729x = 7.19 + 0.729x$$
+$$v_{\star}(A) (1 - \gamma^5) = 10$$
 
-**Bước 3:** Chuyển vế và giải $x$:
+$$v_{\star}(A) = \frac{10}{1 - \gamma^5}$$
 
-$$x - 0.729x = 7.19$$
+---
 
-$$0.271x = 7.19$$
+## 5. Thay số cụ thể
 
-$$x = \frac{7.19}{0.271} \approx 26.544$$
+Với $\gamma = 0.9$:
 
-**Chú thích:**
-- Giá trị này lớn hơn thực tế do giả định các trạng thái đều "lý tưởng" (không bị ảnh hưởng bởi biên lưới hoặc các trạng thái khác).
+$$\gamma^5 = (0.9)^5 = 0.59049$$
 
-## Kết quả tính toán chính xác
-Từ bảng giá trị tối ưu trong hình 3.5, giá trị thực tế của trạng thái tốt nhất là:
+$$1 - \gamma^5 = 1 - 0.59049 = 0.40951$$
 
-$$v^{\star}(s^{\star}) = 24.444$$
+$$v_{\star}(A) = \frac{10}{0.40951} \approx 24.414$$
 
-## Kết luận
-**Biểu diễn ký hiệu cuối cùng:**
+---
 
-$$v^{\star}(s^{\star}) = -1 + 0.9[10 + 0.9(-1 + 0.9v^{\star}(s^{\star}))]$$
+## 6. Kết luận
 
-**Giá trị ba chữ số thập phân:**
+Giá trị tối ưu của trạng thái tốt nhất là:
 
-$$v^{\star}(s^{\star}) \approx 24.444$$
+$$\boxed{v_{\star}(A) \approx 24.414}$$
 
-## Giải thích tổng quát
-- Công thức Bellman tối ưu cho phép ta thiết lập hệ phương trình cho các trạng thái đặc biệt.
-- Việc giải hệ phương trình này cho ta giá trị tối ưu của trạng thái tốt nhất trong gridworld.
-- Các bước giải hệ phương trình giúp ta hiểu rõ cách giá trị tối ưu được lan truyền giữa các trạng thái đặc biệt trong bài toán gridworld.
+Làm tròn đến một chữ số thập phân: 24.4
+
+---
+
+**Tóm lại:**
+- Viết lại công thức return.
+- Nhận diện chu kỳ nhận thưởng (cứ 5 bước lại nhận 10 điểm).
+- Thiết lập phương trình Bellman cho trạng thái A.
+- Giải phương trình để tìm giá trị tối ưu.
+- Thay số cụ thể để ra kết quả cuối cùng.
