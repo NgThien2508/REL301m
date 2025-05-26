@@ -5,14 +5,10 @@ Hình 3.5 cho giá trị tối ưu của trạng thái tốt nhất trong gridwo
 
 ## Phân tích bài toán
 - Trạng thái tốt nhất là ô có giá trị $v^{*}(s) = 24.4$ (ô ở hàng 1, cột 2 hoặc 3 trên lưới).
-- Theo ví dụ 3.8, trạng thái A khi thực hiện hành động sẽ nhận phần thưởng +10 và chuyển về A', còn B nhận +5 và chuyển về B'.
+- Theo ví dụ 3.8, trạng thái $A$ khi thực hiện hành động sẽ nhận phần thưởng $+10$ và chuyển về $A'$, còn $B$ nhận $+5$ và chuyển về $B'$.
 - Công thức Bellman tối ưu (3.8):
 
-**Công thức Bellman tối ưu:**
-
-$$
-v^*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v^*(s') \right]
-$$
+$$v^*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v^*(s') \right]$$
 
 **Chú thích:**
 - $v^*(s)$: Giá trị tối ưu của trạng thái $s$ (tức là tổng phần thưởng kỳ vọng lớn nhất có thể nhận được khi bắt đầu từ $s$ và đi theo chính sách tối ưu).
@@ -22,40 +18,34 @@ $$
 - $r$: phần thưởng nhận được khi chuyển trạng thái.
 
 Với gridworld này:
-- Phần thưởng thông thường mỗi bước là -1 (trừ khi vào A hoặc B).
+- Phần thưởng thông thường mỗi bước là $-1$ (trừ khi vào $A$ hoặc $B$).
 - Hệ số chiết khấu $\gamma = 0.9$.
 
 ## Biểu diễn giá trị tối ưu của trạng thái tốt nhất (ký hiệu)
-Giả sử trạng thái tốt nhất là $s^{*}$ (ở đây là ô gần A nhất, không phải A).
+Giả sử trạng thái tốt nhất là $s^{*}$ (ở đây là ô gần $A$ nhất, không phải $A$).
 
 **Ý tưởng:**
-- Khi ở $s^{*}$, hành động tối ưu là đi về phía A, sau đó nhận +10 và về A', rồi tiếp tục chu trình tối ưu.
+- Khi ở $s^{*}$, hành động tối ưu là đi về phía $A$, sau đó nhận $+10$ và về $A'$, rồi tiếp tục chu trình tối ưu.
 - Ta sẽ thiết lập các phương trình giá trị cho các trạng thái liên quan: $s^{*}$, $A$, $A'$.
 
 **Công thức cho từng trạng thái:**
 - Giá trị tối ưu của $s^{*}$:
 
-$$
-v^{*}(s^{*}) = -1 + \gamma v^{*}(A)
-$$
+$$v^{*}(s^{*}) = -1 + \gamma v^{*}(A)$$
 
   - $-1$: phần thưởng khi đi từ $s^{*}$ đến $A$ (mỗi bước đi thông thường đều bị phạt -1).
   - $\gamma v^{*}(A)$: giá trị chiết khấu của trạng thái $A$ tiếp theo.
 
 - Giá trị tối ưu của $A$:
 
-$$
-v^{*}(A) = 10 + \gamma v^{*}(A')
-$$
+$$v^{*}(A) = 10 + \gamma v^{*}(A')$$
 
   - $10$: phần thưởng đặc biệt khi vào $A$.
   - $\gamma v^{*}(A')$: giá trị chiết khấu của trạng thái $A'$ tiếp theo.
 
 - Giá trị tối ưu của $A'$:
 
-$$
-v^{*}(A') = -1 + \gamma v^{*}(s^{*})
-$$
+$$v^{*}(A') = -1 + \gamma v^{*}(s^{*})$$
 
   - $-1$: phần thưởng khi đi từ $A'$ về $s^{*}$ (bước đi thông thường).
   - $\gamma v^{*}(s^{*})$: giá trị chiết khấu của trạng thái $s^{*}$ tiếp theo.
@@ -68,15 +58,9 @@ Gọi:
 
 Ta có hệ phương trình:
 
-$$
-x = -1 + 0.9y
-$$
-$$
-y = 10 + 0.9z
-$$
-$$
-z = -1 + 0.9x
-$$
+$$x = -1 + 0.9y$$
+$$y = 10 + 0.9z$$
+$$z = -1 + 0.9x$$
 
 **Chú thích:**
 - Các hệ số 0.9 là do $\gamma = 0.9$.
@@ -85,27 +69,17 @@ $$
 ## Giải hệ phương trình
 **Bước 1:** Thay $z$ vào $y$:
 
-$$
-y = 10 + 0.9z = 10 + 0.9(-1 + 0.9x) = 10 - 0.9 + 0.81x = 9.1 + 0.81x
-$$
+$$y = 10 + 0.9z = 10 + 0.9(-1 + 0.9x) = 10 - 0.9 + 0.81x = 9.1 + 0.81x$$
 
 **Bước 2:** Thay $y$ vào $x$:
 
-$$
-x = -1 + 0.9y = -1 + 0.9(9.1 + 0.81x) = -1 + 8.19 + 0.729x = 7.19 + 0.729x
-$$
+$$x = -1 + 0.9y = -1 + 0.9(9.1 + 0.81x) = -1 + 8.19 + 0.729x = 7.19 + 0.729x$$
 
 **Bước 3:** Chuyển vế và giải $x$:
 
-$$
-x - 0.729x = 7.19
-$$
-$$
-0.271x = 7.19
-$$
-$$
-x = \frac{7.19}{0.271} \approx 26.544
-$$
+$$x - 0.729x = 7.19$$
+$$0.271x = 7.19$$
+$$x = \frac{7.19}{0.271} \approx 26.544$$
 
 **Chú thích:**
 - Giá trị này lớn hơn thực tế do giả định các trạng thái đều "lý tưởng" (không bị ảnh hưởng bởi biên lưới hoặc các trạng thái khác).
@@ -113,22 +87,16 @@ $$
 ## Kết quả tính toán chính xác
 Từ bảng giá trị tối ưu trong hình 3.5, giá trị thực tế của trạng thái tốt nhất là:
 
-$$
-v^{*}(s^{*}) = 24.444
-$$
+$$v^{*}(s^{*}) = 24.444$$
 
 ## Kết luận
 **Biểu diễn ký hiệu:**
 
-$$
-v^{*}(s^{*}) = -1 + 0.9 \left[10 + 0.9(-1 + 0.9 v^{*}(s^{*}))\right]
-$$
+$$v^{*}(s^{*}) = -1 + 0.9 \left[10 + 0.9(-1 + 0.9 v^{*}(s^{*}))\right]$$
 
 **Giá trị ba chữ số thập phân:**
 
-$$
-v^{*}(s^{*}) \approx 24.444
-$$
+$$v^{*}(s^{*}) \approx 24.444$$
 
 ## Giải thích tổng quát
 - Công thức Bellman tối ưu cho phép ta thiết lập hệ phương trình cho các trạng thái đặc biệt.
