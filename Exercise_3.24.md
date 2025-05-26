@@ -71,7 +71,7 @@ $v^{}(s^{}) = -1 + 0.9 [10 + 0.9(-1 + 0.9 v^{}(s^{}))]$
 
 **Giá trị ba chữ số thập phân:**
 
-$v^{*}(s^{*}) \approx 24.444$
+v∗(s∗)≈24.444
 
 ## Giải thích
 - Công thức Bellman tối ưu cho phép ta thiết lập hệ phương trình cho các trạng thái đặc biệt.
