@@ -8,7 +8,7 @@ Hình 3.5 cho giá trị tối ưu của trạng thái tốt nhất trong gridwo
 - Theo ví dụ 3.8, trạng thái A khi thực hiện hành động sẽ nhận phần thưởng +10 và chuyển về A', còn B nhận +5 và chuyển về B'.
 - Công thức Bellman tối ưu (3.8):
 
-$$v^{*}(s) = \max_a \sum_{s', r} p(s', r | s, a) \left[ r + \gamma v^{*}(s') \right]$$
+$v^{}(s) = \max_a \sum_{s', r} p(s', r | s, a) [r + \gamma v^{}(s')]$
 
 Với gridworld này:
 - Phần thưởng thông thường mỗi bước là -1 (trừ khi vào A hoặc B).
