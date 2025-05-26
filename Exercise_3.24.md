@@ -5,21 +5,21 @@ Hình 3.5 cho giá trị tối ưu của trạng thái tốt nhất trong gridwo
 
 ### Phân tích bài toán
 - Trạng thái tốt nhất là ô có giá trị $v^*(s) = 24.4$ (ô ở hàng 1, cột 2 hoặc 3 trên lưới).
-- Theo ví dụ 3.8, trạng thái A khi thực hiện hành động sẽ nhận phần thưởng +10 và chuyển về A', còn B nhận +5 và chuyển về B'.
+- Theo ví dụ 3.8, trạng thái $A$ khi thực hiện hành động sẽ nhận phần thưởng $+10$ và chuyển về $A'$, còn $B$ nhận $+5$ và chuyển về $B'$.
 - Công thức Bellman tối ưu (3.8):
 
 $$
-v^*(s) = \max_a \sum_{s', r} p(s', r | s, a) [ r + \gamma v^*(s') ]
+v^*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v^*(s') \right]
 $$
 
 Với gridworld này:
-- Phần thưởng thông thường mỗi bước là -1 (trừ khi vào A hoặc B).
+- Phần thưởng thông thường mỗi bước là $-1$ (trừ khi vào $A$ hoặc $B$).
 - Hệ số chiết khấu $\gamma = 0.9$.
 
 ### Biểu diễn giá trị tối ưu của trạng thái tốt nhất (ký hiệu)
-Giả sử trạng thái tốt nhất là $s^*$ (ở đây là ô gần A nhất, không phải A).
+Giả sử trạng thái tốt nhất là $s^*$ (ở đây là ô gần $A$ nhất, không phải $A$).
 
-Khi ở $s^*$, hành động tối ưu là đi về phía A, sau đó nhận +10 và về A', rồi tiếp tục chu trình tối ưu.
+Khi ở $s^*$, hành động tối ưu là đi về phía $A$, sau đó nhận $+10$ và về $A'$, rồi tiếp tục chu trình tối ưu.
 
 Giá trị tối ưu của $s^*$ là:
 
@@ -27,12 +27,12 @@ $$
 v^*(s^*) = -1 + \gamma v^*(A)
 $$
 
-Với A:
+Với $A$:
 $$
 v^*(A) = 10 + \gamma v^*(A')
 $$
 
-Với A' là một trạng thái bình thường, tiếp tục đi về A:
+Với $A'$ là một trạng thái bình thường, tiếp tục đi về $A$:
 $$
 v^*(A') = -1 + \gamma v^*(s^*)
 $$
@@ -72,7 +72,7 @@ $$
 0.271x = 7.19
 $$
 $$
-x = 7.19 / 0.271 \approx 26.544
+x = \frac{7.19}{0.271} \approx 26.544
 $$
 
 Tuy nhiên, giá trị tối ưu thực tế là 24.4 (do các trạng thái biên và các bước đi không tối ưu hoàn toàn). Nhưng về mặt lý thuyết, đây là cách thiết lập và giải hệ phương trình.
@@ -85,7 +85,7 @@ v^*(s^*) = 24.444
 $$
 
 ### Kết luận
-- Biểu diễn ký hiệu: $$v^*(s^*) = -1 + 0.9 [10 + 0.9(-1 + 0.9 v^*(s^*))]$$
+- Biểu diễn ký hiệu: $$v^*(s^*) = -1 + 0.9 \left[10 + 0.9(-1 + 0.9 v^*(s^*))\right]$$
 - Giá trị ba chữ số thập phân: $$v^*(s^*) \approx 24.444$$
 
 ### Giải thích
