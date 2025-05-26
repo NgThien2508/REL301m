@@ -32,13 +32,13 @@ Với A' là một trạng thái bình thường, tiếp tục đi về A:
 $v^{\star}(A') = -1 + \gamma v^{\star}(s^{\star})$
 
 ## Thiết lập hệ phương trình
-Giả sử $v^{*}(s^{*}) = x$, $v^{*}(A) = y$, $v^{*}(A') = z$.
+Giả sử $v^{\star}(s^{\star}) = x$, $v^{\star}(A) = y$, $v^{\star}(A') = z$.
 
-$$x = -1 + 0.9y$$
+$x = -1 + 0.9y$
 
-$$y = 10 + 0.9z$$
+$y = 10 + 0.9z$
 
-$$z = -1 + 0.9x$$
+$z = -1 + 0.9x$
 
 ## Giải hệ phương trình
 Thay z vào y:
