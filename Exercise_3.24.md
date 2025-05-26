@@ -62,14 +62,16 @@ Tuy nhiên, giá trị tối ưu thực tế là 24.4 (do các trạng thái bi�
 ## Kết quả tính toán chính xác
 Tính lại với các giá trị thực tế từ lưới (có thể do các trạng thái biên, giá trị thực tế nhỏ hơn):
 
-$$v^{*}(s^{*}) = 24.444$$
+
+$v^{\star}(s^{\star}) = 24.444$
 
 ## Kết luận
 **Biểu diễn ký hiệu:**
-$$v^{*}(s^{*}) = -1 + 0.9 \left[10 + 0.9(-1 + 0.9 v^{*}(s^{*}))\right]$$
+$v^{}(s^{}) = -1 + 0.9 [10 + 0.9(-1 + 0.9 v^{}(s^{}))]$
 
 **Giá trị ba chữ số thập phân:**
-$$v^{*}(s^{*}) \approx 24.444$$
+
+$v^{*}(s^{*}) \approx 24.444$
 
 ## Giải thích
 - Công thức Bellman tối ưu cho phép ta thiết lập hệ phương trình cho các trạng thái đặc biệt.
