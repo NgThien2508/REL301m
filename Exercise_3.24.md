@@ -8,9 +8,9 @@ Hình 3.5 cho giá trị tối ưu của trạng thái tốt nhất trong gridwo
 - Theo ví dụ 3.8, trạng thái $A$ khi thực hiện hành động sẽ nhận phần thưởng $+10$ và chuyển về $A'$, còn $B$ nhận $+5$ và chuyển về $B'$.
 - Công thức Bellman tối ưu (3.8):
 
-\[
-v_*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v_*(s') \right]
-\]
+$$
+v_*(s) = \max_a \sum_{s', r} p(s', r \mid s, a) [ r + \gamma v_*(s') ]
+$$
 
 Với gridworld này:
 - Phần thưởng thông thường mỗi bước là $-1$ (trừ khi vào $A$ hoặc $B$).
@@ -23,64 +23,52 @@ Khi ở $s^*$, hành động tối ưu là đi về phía $A$, sau đó nhận $
 
 Giá trị tối ưu của $s^*$ là:
 
-\[
+$$
 v_*(s^*) = -1 + \gamma v_*(A)
-\]
+$$
 
 Với $A$:
-\[
+$$
 v_*(A) = 10 + \gamma v_*(A')
-\]
+$$
 
 Với $A'$ là một trạng thái bình thường, tiếp tục đi về $A$:
-\[
+$$
 v_*(A') = -1 + \gamma v_*(s^*)
-\]
+$$
 
 ### Thiết lập hệ phương trình
 Giả sử $v_*(s^*) = x$, $v_*(A) = y$, $v_*(A') = z$.
 
-\[
-\begin{cases}
-x = -1 + 0.9y \\
-y = 10 + 0.9z \\
-z = -1 + 0.9x
-\end{cases}
-\]
+$$x = -1 + 0.9y$$
+$$y = 10 + 0.9z$$
+$$z = -1 + 0.9x$$
 
 ### Giải hệ phương trình
 Thay $z$ vào $y$:
 
-\[
-y = 10 + 0.9(-1 + 0.9x) = 10 - 0.9 + 0.81x = 9.1 + 0.81x
-\]
+$$y = 10 + 0.9(-1 + 0.9x) = 10 - 0.9 + 0.81x = 9.1 + 0.81x$$
 
 Thay $y$ vào $x$:
 
-\[
-x = -1 + 0.9(9.1 + 0.81x) = -1 + 8.19 + 0.729x = 7.19 + 0.729x
-\]
+$$x = -1 + 0.9(9.1 + 0.81x) = -1 + 8.19 + 0.729x = 7.19 + 0.729x$$
 
 Chuyển vế:
 
-\[
-x - 0.729x = 7.19 \\
-0.271x = 7.19 \\
-x = \frac{7.19}{0.271} \approx 26.544
-\]
+$$x - 0.729x = 7.19$$
+$$0.271x = 7.19$$
+$$x = \frac{7.19}{0.271} \approx 26.544$$
 
 Tuy nhiên, giá trị tối ưu thực tế là 24.4 (do các trạng thái biên và các bước đi không tối ưu hoàn toàn). Nhưng về mặt lý thuyết, đây là cách thiết lập và giải hệ phương trình.
 
 ### Kết quả tính toán chính xác
 Tính lại với các giá trị thực tế từ lưới (có thể do các trạng thái biên, giá trị thực tế nhỏ hơn):
 
-\[
-v_*(s^*) = 24.444
-\]
+$$v_*(s^*) = 24.444$$
 
 ### Kết luận
-- Biểu diễn ký hiệu: $v_*(s^*) = -1 + 0.9 \left[10 + 0.9(-1 + 0.9 v_*(s^*))\right]$
-- Giá trị ba chữ số thập phân: $v_*(s^*) \approx 24.444$
+- Biểu diễn ký hiệu: $$v_*(s^*) = -1 + 0.9 [10 + 0.9(-1 + 0.9 v_*(s^*))]$$
+- Giá trị ba chữ số thập phân: $$v_*(s^*) \approx 24.444$$
 
 ### Giải thích
 - Công thức Bellman tối ưu cho phép ta thiết lập hệ phương trình cho các trạng thái đặc biệt.
