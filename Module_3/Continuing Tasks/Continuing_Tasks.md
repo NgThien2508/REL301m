@@ -153,7 +153,7 @@ Nhiệm vụ liên tục đòi hỏi:
 - Cân bằng ngắn-dài hạn
 
 -------------------------------------------
-##### Cập nhật: 5-27-2025 lúc 8PM
+##### Cập nhật: 5-22-2025 lúc 8PM
 ##### Khóa học: Fundamentals of Reinforcement Learning - Module 3
 ##### Tài liệu: Continuing Tasks
 ##### Học nội dung từ clip: Continuing Tasks

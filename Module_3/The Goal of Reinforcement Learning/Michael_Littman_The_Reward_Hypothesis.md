@@ -136,6 +136,6 @@ Giả thuyết phần thưởng của Michael Littman đã:
 - Định hình tương lai của học máy
 
 -------------------------------------------
-##### Cập nhật: 5-27-2025 lúc 8PM
+##### Cập nhật: 5-21-2025 lúc 8PM
 ##### Khóa học: Fundamentals of Reinforcement Learning - Module 3
 ##### Tài liệu: Michael Littman The Reward Hypothesis

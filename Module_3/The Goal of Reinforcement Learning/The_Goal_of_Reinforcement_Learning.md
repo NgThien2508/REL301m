@@ -105,4 +105,8 @@ Trong Reinforcement Learning (Học tăng cường), mục tiêu chính của ag
 3. **Giai đoạn cao cấp**:
    - Tối ưu điểm số
    - Tìm đường đi nhanh nhất
-   - Khám phá đường đi bí mật
+
+   --------------------------------------------
+##### Cập nhật: 5-21-2025 lúc 9AM
+##### Khóa học: Fundamentals of Reinforcement Learning - Module 3
+##### Tài liệu: Michael Littman The Reward Hypothesis
